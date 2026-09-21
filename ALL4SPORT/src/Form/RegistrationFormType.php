@@ -17,7 +17,12 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('nom')        // onn rajoute le nom et prenom qui sont automatiquement relié avec l'entité
+            ->add('prenom')
+            ->add('adresse')
             ->add('email')
+            ->add('telephone')
+            ->add('date_naissance')
             ->add('agreeTerms', CheckboxType::class, [
                                 'mapped' => false,
                 'constraints' => [
