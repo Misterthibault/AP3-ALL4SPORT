@@ -29,13 +29,23 @@ Chiffrer les données des clients et assurer une sécurité
 ## Journal de bord
 
 
-### Vendredi 7 septembre 2026 :
+### Lundi 7 septembre 2026 :
 
 On a décortiqué et planifié la liste des tâches à faire avec Trello puis on a créé le MCD de la futur base de donnée avec Mocodo. Enfin, Thibault s'est ocuupé de rédiger le rapport de projet et Mathéo a travaillé sur le design.
 
-### Vendredi 14 septembre 2026 :
+### Lundi 14 septembre 2026 :
 
 on a modifié le MCD car il y avait beaucoup d'erreurs, on a fait également le dictionnaire de donnée. Enfin on a réalisé la maquette du site sur papier.
+
+### Jeudi 10 septembre 2026 :
+
+Creation d'une entité grace au cours du jour
+
+### Lundi 21 septembre 2026 :
+
+matheo a été en retard de 2h...
+thibault a cree plusieur entité ainsi que leur champs. il reste les relations à faire. il a également réaliser la creation des utilisateur via un formulaire grâce a symfony.
+
 
 ------------------------------
 
