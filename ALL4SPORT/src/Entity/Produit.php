@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProduitRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
@@ -24,6 +26,24 @@ class Produit
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
+
+    /**
+     * @var Collection<int, Magasin>
+     */
+    #[ORM\ManyToMany(targetEntity: Magasin::class, mappedBy: 'fk_produit')]
+    private Collection $magasins;
+
+    /**
+     * @var Collection<int, Entrepot>
+     */
+    #[ORM\ManyToMany(targetEntity: Entrepot::class, mappedBy: 'fk_produit')]
+    private Collection $entrepots;
+
+    public function __construct()
+    {
+        $this->magasins = new ArrayCollection();
+        $this->entrepots = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -74,6 +94,60 @@ class Produit
     public function setDescription(?string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Magasin>
+     */
+    public function getMagasins(): Collection
+    {
+        return $this->magasins;
+    }
+
+    public function addMagasin(Magasin $magasin): static
+    {
+        if (!$this->magasins->contains($magasin)) {
+            $this->magasins->add($magasin);
+            $magasin->addFkProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMagasin(Magasin $magasin): static
+    {
+        if ($this->magasins->removeElement($magasin)) {
+            $magasin->removeFkProduit($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Entrepot>
+     */
+    public function getEntrepots(): Collection
+    {
+        return $this->entrepots;
+    }
+
+    public function addEntrepot(Entrepot $entrepot): static
+    {
+        if (!$this->entrepots->contains($entrepot)) {
+            $this->entrepots->add($entrepot);
+            $entrepot->addFkProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEntrepot(Entrepot $entrepot): static
+    {
+        if ($this->entrepots->removeElement($entrepot)) {
+            $entrepot->removeFkProduit($this);
+        }
 
         return $this;
     }
