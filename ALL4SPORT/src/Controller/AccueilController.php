@@ -15,4 +15,11 @@ final class AccueilController extends AbstractController
             'controller_name' => 'Thibz_AP3',
         ]);
     }
+
+    #[Route('/register', name: 'app_register')]
+    public function show(): Response
+    {
+        return $this->render('registration/register.html.twig', [
+        ]);
+    }
 }
