@@ -5,11 +5,15 @@
 
 {% block body %}
 <header>
-    <a href="{{ path('app_register',) }}"> S'enregistrer<a/>
-    <a href="{{ path('app_logout',) }}"> Se déconnecter<a/>
+    {% if app.user%}
+        <a href="{{ path('app_logout',) }}"> Se déconnecter<a/>
+    {% else %}
+        <a href="{{ path('app_register',) }}"> S'enregistrer<a/>
+        <a href="{{ path('app_login',) }}"> Se connecter<a/>
+    {% endif %}
+
+    
     <a href="{{ path('app_panier',) }}"> Panier<a/>
-
-
 
 </header>
 <style>
@@ -18,7 +22,7 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Hello ! ✅</h1>
 
     <p>Venez acheter vos articles de sport sur notre site ALL 4 SPORT !</p>
     <p>pas chere pas chere </p>

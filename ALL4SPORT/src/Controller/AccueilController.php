@@ -22,11 +22,11 @@ final class AccueilController extends AbstractController
         return $this->render('registration/register.html.twig', []);
     }
 
-    #[Route('/logout', name: 'app_logout')]
-    public function logout(): Response
-    {
-        return $this->render('/logout.html.twig', []);
-    }
+    // #[Route('/login', name: 'app_logout')]
+    // public function logout(): Response
+    // {
+    //     return $this->render('/login.html.twig', []);
+    // }
 
     #[Route('/panier', name: 'app_panier')]
     public function panier(): Response
