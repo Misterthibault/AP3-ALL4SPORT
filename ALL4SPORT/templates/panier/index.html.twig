@@ -1,22 +1,56 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PanierController!{% endblock %}
+{% block title %}Panier ALL4SPORT{% endblock %}
 
 {% block body %}
-<header>
-    <a href="{{ path('app_accueil',) }}"> Retour<a/>
-
-
-
-</header>
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .cart-page { margin: 2rem auto; max-width: 1100px; width: 92%; color: #202b36; font: 16px/1.5 Arial, sans-serif; }
+    .cart-back { color: #52616d; text-decoration: none; }
+    .cart-back:hover { color: #16834a; }
+    .cart-heading { margin: 1.5rem 0; display: flex; align-items: baseline; gap: .75rem; }
+    .cart-heading h1 { margin: 0; font-size: 2rem; }
+    .cart-count { color: #71808c; }
+    .cart-layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 1.5rem; align-items: start; }
+    .cart-card, .summary-card { background: #fff; border: 1px solid #e2e8ec; border-radius: 10px; box-shadow: 0 3px 12px rgba(25, 45, 60, .05); }
+    .cart-card { padding: 2.5rem 1.5rem; text-align: center; }
+    .cart-icon { margin: 0 auto 1rem; width: 64px; height: 64px; display: grid; place-items: center; border-radius: 50%; background: #edf7f1; color: #16834a; font-size: 2rem; }
+    .cart-card h2 { margin: 0 0 .5rem; font-size: 1.35rem; }
+    .cart-card p { margin: 0 auto 1.5rem; max-width: 420px; color: #71808c; }
+    .shop-button { display: inline-block; padding: .75rem 1.25rem; border-radius: 5px; background: #16834a; color: #fff; font-weight: 700; text-decoration: none; }
+    .shop-button:hover { background: #116b3b; }
+    .summary-card { padding: 1.25rem; }
+    .summary-card h2 { margin: 0 0 1rem; font-size: 1.15rem; }
+    .summary-line { display: flex; justify-content: space-between; margin: .6rem 0; color: #52616d; }
+    .summary-total { padding-top: .9rem; border-top: 1px solid #e2e8ec; color: #202b36; font-weight: 700; }
+    .checkout-button { display: block; margin-top: 1rem; padding: .75rem; border-radius: 5px; background: #d8dee2; color: #fff; text-align: center; text-decoration: none; cursor: not-allowed; }
+    .delivery-note { margin: 1rem 0 0; color: #71808c; font-size: .85rem; text-align: center; }
+    @media (max-width: 700px) { .cart-layout { grid-template-columns: 1fr; } .cart-heading h1 { font-size: 1.65rem; } }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<main class="cart-page">
+    <a class="cart-back" href="{{ path('app_accueil') }}">&larr; Continuer mes achats</a>
 
-    achete pas chere pas chere
+    <div class="cart-heading">
+        <h1>Mon panier</h1>
+        <span class="cart-count">(0 article)</span>
+    </div>
+
+    <div class="cart-layout">
+        <section class="cart-card" aria-labelledby="empty-cart-title">
+            <div class="cart-icon" aria-hidden="true">🛒</div>
+            <h2 id="empty-cart-title">Votre panier est vide</h2>
+            <p>Découvrez notre sélection d’équipements et d’accessoires de sport pour trouver votre prochain essentiel.</p>
+            <a class="shop-button" href="{{ path('app_accueil') }}">Découvrir nos produits</a>
+        </section>
+
+        <aside class="summary-card" aria-labelledby="summary-title">
+            <h2 id="summary-title">Résumé de la commande</h2>
+            <div class="summary-line"><span>Sous-total</span><span>0,00 €</span></div>
+            <div class="summary-line"><span>Livraison</span><span>—</span></div>
+            <div class="summary-line summary-total"><span>Total</span><span>0,00 €</span></div>
+            <span class="checkout-button" aria-disabled="true">Passer commande</span>
+            <p class="delivery-note">Paiement sécurisé · Livraison en France</p>
+        </aside>
+    </div>
 </div>
 {% endblock %}
