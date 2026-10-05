@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3308
--- Généré le : lun. 21 sep. 2026 à 10:17
+-- Généré le : lun. 05 oct. 2026 à 09:21
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -39,6 +39,13 @@ CREATE TABLE `client` (
   `date_naissance` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `client`
+--
+
+INSERT INTO `client` (`id`, `email`, `roles`, `password`, `nom`, `prenom`, `adresse`, `telephone`, `date_naissance`) VALUES
+(1, 'thibault.ponchelet59@gmail.com', '[]', '$2y$13$IsTCDQHnzKV//RVuiJ1bO.f2wP/iCuUl7aO54q8a6xOGBQBVCz45C', 'Ponchelet', 'Thibault', '18 Avenue de la victoire', '0667676769', '2007-03-08');
+
 -- --------------------------------------------------------
 
 --
@@ -72,7 +79,9 @@ CREATE TABLE `doctrine_migration_versions` (
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 ('DoctrineMigrations\\Version20260917100726', '2026-09-17 10:07:36', 53),
 ('DoctrineMigrations\\Version20260921065524', '2026-09-21 07:08:44', 25),
-('DoctrineMigrations\\Version20260921072349', '2026-09-21 07:23:56', 52);
+('DoctrineMigrations\\Version20260921072349', '2026-09-21 07:23:56', 52),
+('DoctrineMigrations\\Version20260928074858', '2026-09-28 09:15:58', 216),
+('DoctrineMigrations\\Version20261005072022', '2026-10-05 07:20:30', 30);
 
 -- --------------------------------------------------------
 
@@ -91,6 +100,27 @@ CREATE TABLE `enfant` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `entrepot`
+--
+
+CREATE TABLE `entrepot` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `entrepot_produit`
+--
+
+CREATE TABLE `entrepot_produit` (
+  `entrepot_id` int(11) NOT NULL,
+  `produit_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `historique_commande`
 --
 
@@ -99,6 +129,27 @@ CREATE TABLE `historique_commande` (
   `etat` varchar(20) NOT NULL,
   `date_commande` date NOT NULL,
   `commande_tel_client` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `magasin`
+--
+
+CREATE TABLE `magasin` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `magasin_produit`
+--
+
+CREATE TABLE `magasin_produit` (
+  `magasin_id` int(11) NOT NULL,
+  `produit_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -128,7 +179,8 @@ CREATE TABLE `produit` (
   `ref` varchar(18) NOT NULL,
   `prix_vente` double NOT NULL,
   `nom_fournisseur` varchar(255) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL
+  `description` varchar(255) DEFAULT NULL,
+  `nom` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -173,10 +225,38 @@ ALTER TABLE `enfant`
   ADD KEY `IDX_34B70CA219EB6921` (`client_id`);
 
 --
+-- Index pour la table `entrepot`
+--
+ALTER TABLE `entrepot`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `entrepot_produit`
+--
+ALTER TABLE `entrepot_produit`
+  ADD PRIMARY KEY (`entrepot_id`,`produit_id`),
+  ADD KEY `IDX_D23AE53F72831E97` (`entrepot_id`),
+  ADD KEY `IDX_D23AE53FF347EFB` (`produit_id`);
+
+--
 -- Index pour la table `historique_commande`
 --
 ALTER TABLE `historique_commande`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `magasin`
+--
+ALTER TABLE `magasin`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `magasin_produit`
+--
+ALTER TABLE `magasin_produit`
+  ADD PRIMARY KEY (`magasin_id`,`produit_id`),
+  ADD KEY `IDX_5E1A357B20096AE3` (`magasin_id`),
+  ADD KEY `IDX_5E1A357BF347EFB` (`produit_id`);
 
 --
 -- Index pour la table `messenger_messages`
@@ -205,7 +285,7 @@ ALTER TABLE `sport_pratiquer`
 -- AUTO_INCREMENT pour la table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `commande`
@@ -220,9 +300,21 @@ ALTER TABLE `enfant`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT pour la table `entrepot`
+--
+ALTER TABLE `entrepot`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `historique_commande`
 --
 ALTER TABLE `historique_commande`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `magasin`
+--
+ALTER TABLE `magasin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -252,6 +344,20 @@ ALTER TABLE `sport_pratiquer`
 --
 ALTER TABLE `enfant`
   ADD CONSTRAINT `FK_34B70CA219EB6921` FOREIGN KEY (`client_id`) REFERENCES `client` (`id`);
+
+--
+-- Contraintes pour la table `entrepot_produit`
+--
+ALTER TABLE `entrepot_produit`
+  ADD CONSTRAINT `FK_D23AE53F72831E97` FOREIGN KEY (`entrepot_id`) REFERENCES `entrepot` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_D23AE53FF347EFB` FOREIGN KEY (`produit_id`) REFERENCES `produit` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `magasin_produit`
+--
+ALTER TABLE `magasin_produit`
+  ADD CONSTRAINT `FK_5E1A357B20096AE3` FOREIGN KEY (`magasin_id`) REFERENCES `magasin` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_5E1A357BF347EFB` FOREIGN KEY (`produit_id`) REFERENCES `produit` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

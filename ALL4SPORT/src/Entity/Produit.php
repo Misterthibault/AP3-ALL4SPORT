@@ -39,6 +39,9 @@ class Produit
     #[ORM\ManyToMany(targetEntity: Entrepot::class, mappedBy: 'fk_produit')]
     private Collection $entrepots;
 
+    #[ORM\Column(length: 255)]
+    private ?string $nom = null;
+
     public function __construct()
     {
         $this->magasins = new ArrayCollection();
@@ -148,6 +151,18 @@ class Produit
         if ($this->entrepots->removeElement($entrepot)) {
             $entrepot->removeFkProduit($this);
         }
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): static
+    {
+        $this->nom = $nom;
 
         return $this;
     }
