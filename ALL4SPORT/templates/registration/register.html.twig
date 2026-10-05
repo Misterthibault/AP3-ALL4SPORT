@@ -4,6 +4,95 @@
 
 {% block body %}
     <h1>Register</h1>
+    <style>
+        h1 {
+            margin: 2rem auto 1.5rem;
+            color: #17324d;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        form {
+            box-sizing: border-box;
+            width: min(100% - 2rem, 560px);
+            margin: 0 auto 3rem;
+            padding: 2rem;
+            background: #fff;
+            border: 1px solid #e1e8ef;
+            border-radius: 14px;
+            box-shadow: 0 8px 24px rgba(23, 50, 77, 0.08);
+        }
+
+        form div {
+            margin-bottom: 1.1rem;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 0.45rem;
+            color: #26384a;
+            font-weight: 600;
+        }
+
+        form input:not([type="checkbox"]),
+        form select,
+        form textarea {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 0.75rem 0.85rem;
+            color: #26384a;
+            background: #f8fafc;
+            border: 1px solid #cbd5df;
+            border-radius: 7px;
+            font: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        form input:focus,
+        form select:focus,
+        form textarea:focus {
+            outline: none;
+            border-color: #2474b5;
+            box-shadow: 0 0 0 3px rgba(36, 116, 181, 0.15);
+        }
+
+        form input[type="checkbox"] {
+            margin-right: 0.5rem;
+            accent-color: #2474b5;
+        }
+
+        form button[type="submit"] {
+            width: 100%;
+            margin-top: 0.5rem;
+            padding: 0.85rem 1rem;
+            color: #fff;
+            background: #2474b5;
+            border: 0;
+            border-radius: 7px;
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        form button[type="submit"]:hover {
+            background: #185b91;
+            transform: translateY(-1px);
+        }
+
+        form ul {
+            margin: 0.35rem 0 0;
+            padding-left: 1.2rem;
+            color: #c0392b;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 480px) {
+            form {
+                padding: 1.25rem;
+            }
+        }
+    </style>
 
     {{ form_errors(registrationForm) }}
 
