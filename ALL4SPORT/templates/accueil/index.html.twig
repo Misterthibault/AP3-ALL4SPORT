@@ -22,7 +22,13 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ app.user.nom }} {{ app.user.prenom }}! ✅</h1>
+    <h1>Hello 
+        {% if app.user%}
+        {{ app.user.nom }} {{ app.user.prenom }}!
+        {% else %}
+            <p>nouvel utilisateur</p>
+        {% endif %}
+        </h1>
 
     <p>Venez acheter vos articles de sport sur notre site ALL 4 SPORT !</p>
     <p>pas chere pas chere </p>

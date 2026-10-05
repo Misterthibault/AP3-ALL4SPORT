@@ -1,3 +1,112 @@
 body {
-    background-color: rgb(255, 255, 255);
+    margin: 0;
+    min-height: 100vh;
+    background-color: #f1f4ef;
+}
+
+.login-page {
+    box-sizing: border-box;
+    display: grid;
+    min-height: 100vh;
+    place-items: center;
+    padding: 32px 20px;
+    background-color:white;
+    font-family: "Segoe UI", sans-serif;
+}
+
+.login-form {
+    box-sizing: border-box;
+    width: min(100%, 420px);
+    padding: 40px;
+    border: 1px solid #dce3d9;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 18px 50px rgb(28 49 34 / 10%);
+}
+
+.login-form h1 {
+    margin: 0 0 28px;
+    color: #20382a;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.login-form .button_register{
+    text-decoration: none;  
+    color: #34463a;
+    border: solid 1px;
+    border-radius: 25px;
+    padding: 5px 15px 9px;
+}
+
+.login-form .button_register:hover{  
+    color: white;
+    background-color: #34463a;
+    transition: 0.5s;
+}
+
+
+.login-form label {
+    display: block;
+    margin: 18px 0 7px;
+    color: #34463a;
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"] {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 46px;
+    padding: 10px 12px;
+    border: 1px solid #cbd5ca;
+    border-radius: 5px;
+    background: #fbfcfa;
+    color: #20382a;
+    font: inherit;
+}
+
+.login-form input[type="email"]:focus,
+.login-form input[type="password"]:focus {
+    border-color: #34734a;
+    outline: 3px solid rgb(52 115 74 / 18%);
+}
+
+.login-form button {
+    width: 100%;
+    min-height: 48px;
+    margin-top: 26px;
+    border: 0;
+    border-radius: 5px;
+    background: #28623d;
+    color: #fff;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.login-form button:hover {
+    transform: translateY(-1px);
+    background: #1e4f30;
+}
+
+.login-form button:focus-visible {
+    outline: 3px solid #89b995;
+    outline-offset: 3px;
+}
+
+.login-form .alert {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    border-radius: 5px;
+    background: #fff0ed;
+    color: #9b3427;
+}
+
+@media (max-width: 480px) {
+    .login-form {
+        padding: 30px 24px;
+    }
 }
