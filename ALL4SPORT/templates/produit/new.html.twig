@@ -3,9 +3,13 @@
 {% block title %}Cree un produit{% endblock %}
 
 {% block body %}
-    <h1>Créer un nouveau Produit</h1>
+<main class="product-page product-form-page">
+    <h1>Créer un nouveau produit</h1>
 
-    {{ include('produit/_form.html.twig') }}
+    <section class="product-card">
+        {{ include('produit/_form.html.twig') }}
+    </section>
 
-    <a href="{{ path('app_produit_index') }}">Retour à la liste</a>
+    <a class="product-back-link" href="{{ path('app_produit_index') }}">Retour à la liste</a>
+</main>
 {% endblock %}

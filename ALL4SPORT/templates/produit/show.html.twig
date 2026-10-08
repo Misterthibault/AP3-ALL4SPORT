@@ -3,40 +3,44 @@
 {% block title %}Produit{% endblock %}
 
 {% block body %}
-    <h1>Produit</h1>
+<main class="product-page product-detail-page">
+    <h1>{{ produit.nom }}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ produit.id }}</td>
-            </tr>
-            <tr>
-                <th>Ref</th>
-                <td>{{ produit.ref }}</td>
-            </tr>
-            <tr>
-                <th>Prix vente</th>
-                <td>{{ produit.prixVente }}</td>
-            </tr>
-            <tr>
-                <th>Nom dufournisseur</th>
-                <td>{{ produit.nomFournisseur }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ produit.description }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ produit.nom }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <section class="product-card">
+        <table class="product-detail-table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ produit.id }}</td>
+                </tr>
+                <tr>
+                    <th>Référence</th>
+                    <td>{{ produit.ref }}</td>
+                </tr>
+                <tr>
+                    <th>Prix de vente</th>
+                    <td>{{ produit.prixVente }}</td>
+                </tr>
+                <tr>
+                    <th>Fournisseur</th>
+                    <td>{{ produit.nomFournisseur }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ produit.description }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ produit.nom }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
 
-    <a href="{{ path('app_produit_index') }}">Retour à la liste</a>
-
-    <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">Modifier</a>
-
-    {{ include('produit/_delete_form.html.twig') }}
+    <div class="product-detail-actions">
+        <a class="product-back-link" href="{{ path('app_produit_index') }}">Retour à la liste</a>
+        <a class="product-primary-link" href="{{ path('app_produit_edit', {'id': produit.id}) }}">Modifier</a>
+        {{ include('produit/_delete_form.html.twig') }}
+    </div>
+</main>
 {% endblock %}
