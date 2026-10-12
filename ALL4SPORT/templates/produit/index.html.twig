@@ -12,7 +12,6 @@
         <table class="product-table">
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Référence</th>
                     <th>Prix de vente</th>
                     <th>Fournisseur</th>
@@ -24,7 +23,6 @@
             <tbody>
             {% for produit in produits %}
                 <tr>
-                    <td>{{ produit.id }}</td>
                     <td>{{ produit.ref }}</td>
                     <td>{{ produit.prixVente }}</td>
                     <td>{{ produit.nomFournisseur }}</td>

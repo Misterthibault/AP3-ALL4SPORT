@@ -16,8 +16,8 @@ final class AccueilController extends AbstractController
         return $this->render('accueil/index.html.twig', [
             'produits' => $produit,
         ]);
-    }       
-        
+    }
+
     // #[Route('/produit_show/{id}', name: 'produit_show')]         // route portant un nom, permet de l'appeler depuis n'importe où dans l'application plus facilement
     // public function show(produit $produit): Response
     // {
@@ -26,7 +26,7 @@ final class AccueilController extends AbstractController
     //         'produit' => $produit,
     //     ]);
     // }
-        
+
     #[Route('/register', name: 'app_register')]
     public function register(): Response
     {
@@ -56,4 +56,9 @@ final class AccueilController extends AbstractController
         ]);
     }
 
+    #[Route('/profil', name: 'app_profil')]
+    public function profil(): Response
+    {
+        return $this->render('profil/index.html.twig', []);
+    }
 }
