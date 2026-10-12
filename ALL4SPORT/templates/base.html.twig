@@ -19,6 +19,28 @@
         {% endif %}
     </head>
     <body>
+
+    <style>
+        
+
+    </style>
+
+        <header class="site-header">
+            <nav class="header-actions" aria-label="Navigation principale">
+                {% if app.user %}
+                    <a class="button button-danger" href="{{ path('app_logout') }}">Déconnecter</a>
+                {% else %}
+                    <a class="button button-primary" href="{{ path('app_register') }}">S'enregistrer</a>
+                    <a class="button button-secondary" href="{{ path('app_login') }}">Se connecter</a>
+                {% endif %}
+
+                {% if app.user %}
+                    <a class="button button-cart" href="{{ path('app_panier') }}">Panier</a>
+                    <a class="button button-cart" href="{{path('app_produit_index')}}">Gestion produits</a>
+                    <a class="button button-cart" href="{{path('app_profil')}}">Profil</a>
+                {% endif %}
+            </nav>
+        </header>
         {% block body %}{% endblock %}
     </body>
 </html>
