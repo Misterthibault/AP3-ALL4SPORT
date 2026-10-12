@@ -3,8 +3,45 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    <a class="registration-link registration-link--login" href="{{ path('app_login') }}">Déjà inscrit ? Connectez-vous ici</a>
+    <a class="registration-link registration-link--home" href="{{ path('app_accueil') }}">Retour à l'accueil</a>
+    <h1>Enregistrez vous !</h1>
     <style>
+        .registration-link {
+            display: inline-block;
+            margin: 0.5rem 0.4rem;
+            padding: 0.65rem 1rem;
+            border: 1px solid #2474b5;
+            border-radius: 7px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .registration-link--login {
+            color: #fff;
+            background: #2474b5;
+        }
+
+        .registration-link--login:hover {
+            background: #185b91;
+        }
+
+        .registration-link--home {
+            color: #2474b5;
+            background: #fff;
+        }
+
+        .registration-link--home:hover {
+            color: #fff;
+            background: #2474b5;
+        }
+
+        .registration-link:focus-visible {
+            outline: 3px solid rgba(36, 116, 181, 0.35);
+            outline-offset: 2px;
+        }
+
         h1 {
             margin: 2rem auto 1.5rem;
             color: #17324d;
@@ -104,10 +141,10 @@
         {{ form_row(registrationForm.telephone) }}
         {{ form_row(registrationForm.adresse) }}
         {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
+            label: 'Mot de passe'
         }) }}
         {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
+        <button type="submit" class="btn">S'enregistrer</button>
     {{ form_end(registrationForm) }}
 {% endblock %}
