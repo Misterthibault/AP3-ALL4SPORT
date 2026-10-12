@@ -8,7 +8,6 @@ body {
     display: inline-block;
     margin: 0.5rem 0.4rem;
     padding: 0.65rem 1rem;
-    border: 1px solid #2474b5;
     border-radius: 7px;
     font-weight: 600;
     text-decoration: none;
@@ -123,7 +122,7 @@ form ul {
 
 .site-header {
 padding: 1rem 2rem;
-background: #5c626e;
+background: #D15E00;
 box-shadow: 0 4px 18px rgba(15, 23, 42, 0.18);
 }
 
@@ -168,7 +167,7 @@ color: #0b5fff;
 }
 
 .button-secondary {
-background: #16a34a;
+background: #F86E00;
 }
 
 .button-danger {
@@ -232,7 +231,7 @@ font-family: "Segoe UI", sans-serif;
 }
 
 .registration-link--home {
-color: #34734a;
+color: #F86E00;
 background: #fff;
 }
 
@@ -294,7 +293,7 @@ font: inherit;
 
 .login-form input[type="email"]:focus,
 .login-form input[type="password"]:focus {
-border-color: #34734a;
+border-color: #F86E00;
 outline: 3px solid rgb(52 115 74 / 18%);
 }
 
@@ -304,7 +303,7 @@ min-height: 48px;
 margin-top: 26px;
 border: 0;
 border-radius: 5px;
-background: #28623d;
+background: #F86E00;
 color: #fff;
 font: inherit;
 font-weight: 700;
@@ -314,11 +313,11 @@ transition: background-color 160ms ease, transform 160ms ease;
 
 .login-form button:hover {
 transform: translateY(-1px);
-background: #1e4f30;
+background: #F86E00;
 }
 
 .login-form button:focus-visible {
-outline: 3px solid #89b995;
+outline: 3px solid #e58d45;
 outline-offset: 3px;
 }
 
@@ -351,19 +350,19 @@ font-size: clamp(1.7rem, 4vw, 2.25rem);
 }
 
 .product-page a {
-color: #28623d;
+color: #F86E00;
 font-weight: 600;
 text-decoration: none;
 }
 
 .product-page a:hover {
-color: #1e4f30;
+color: #F86E00;
 text-decoration: underline;
 }
 
 .product-page a:focus-visible,
 .product-page button:focus-visible {
-outline: 3px solid #89b995;
+outline: 3px solid #e58d45;
 outline-offset: 3px;
 }
 
@@ -389,7 +388,7 @@ vertical-align: top;
 }
 
 .product-table thead th {
-background: #28623d;
+background: #F86E00;
 color: #fff;
 font-size: 0.88rem;
 font-weight: 700;
@@ -429,9 +428,9 @@ justify-content: center;
 min-height: 44px;
 margin-top: 20px;
 padding: 0 18px;
-border: 1px solid #28623d;
+border: 1px solid #F86E00;
 border-radius: 6px;
-background: #28623d;
+background: #F86E00;
 color: #fff !important;
 font: inherit;
 font-weight: 700;
@@ -443,7 +442,7 @@ transition: background-color 160ms ease, transform 160ms ease;
 .product-primary-link:hover,
 .product-form-page .btn:hover {
 transform: translateY(-1px);
-background: #1e4f30;
+background: #F86E00;
 }
 
 .product-card {
@@ -515,7 +514,7 @@ resize: vertical;
 .product-form-page input:focus,
 .product-form-page textarea:focus,
 .product-form-page select:focus {
-border-color: #34734a;
+border-color: #F86E00;
 outline: 3px solid rgb(52 115 74 / 18%);
 }
 
@@ -550,6 +549,27 @@ flex-wrap: wrap;
 align-items: center;
 gap: 0 16px;
 }
+
+.cart-page { margin: 2rem auto; max-width: 1100px; width: 92%; color: #202b36; font: 16px/1.5 Arial, sans-serif; }
+.cart-back { color: #52616d; text-decoration: none; }
+.cart-back:hover { color: #f86e00; }
+.cart-heading { margin: 1.5rem 0; display: flex; align-items: baseline; gap: .75rem; }
+.cart-heading h1 { margin: 0; font-size: 2rem; }
+.cart-count { color: #71808c; }
+.cart-layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 1.5rem; align-items: start; }
+.cart-card, .summary-card { background: #fff; border: 1px solid #e2e8ec; border-radius: 10px; box-shadow: 0 3px 12px rgba(25, 45, 60, .05); }
+.cart-card { padding: 2.5rem 1.5rem; text-align: center; }
+.cart-icon { margin: 0 auto 1rem; width: 64px; height: 64px; display: grid; place-items: center; border-radius: 50%; background: #edf7f1; color: #f86e00; font-size: 2rem; }
+.cart-card h2 { margin: 0 0 .5rem; font-size: 1.35rem; }
+.cart-card p { margin: 0 auto 1.5rem; max-width: 420px; color: #71808c; }
+.shop-button { display: inline-block; padding: .75rem 1.25rem; border-radius: 5px; background: #f86e00; color: #fff; font-weight: 700; text-decoration: none; }
+.shop-button:hover { background: #f86e00; }
+.summary-card { padding: 1.25rem; }
+.summary-card h2 { margin: 0 0 1rem; font-size: 1.15rem; }
+.summary-line { display: flex; justify-content: space-between; margin: .6rem 0; color: #52616d; }
+.summary-total { padding-top: .9rem; border-top: 1px solid #e2e8ec; color: #202b36; font-weight: 700; }
+.checkout-button { display: block; margin-top: 1rem; padding: .75rem; border-radius: 5px; background: #d8dee2; color: #fff; text-align: center; text-decoration: none; cursor: not-allowed; }
+.delivery-note { margin: 1rem 0 0; color: #71808c; font-size: .85rem; text-align: center; }
 
 @media (max-width: 700px) {
 .product-page {
