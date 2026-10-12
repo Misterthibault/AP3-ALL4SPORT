@@ -12,8 +12,10 @@
             <a class="button button-secondary" href="{{ path('app_login') }}">Se connecter</a>
         {% endif %}
 
-        <a class="button button-cart" href="{{ path('app_panier') }}">Panier</a>
-        <a class="button button-cart" href="{{path('app_produit_index')}}">Gestion produits</a>
+        {% if app.user %}
+            <a class="button button-cart" href="{{ path('app_panier') }}">Panier</a>
+            <a class="button button-cart" href="{{path('app_produit_index')}}">Gestion produits</a>
+        {% endif %}
     </nav>
 </header>
 
@@ -129,8 +131,17 @@
         {% endif %}
     </h1>
 
-    <p>Venez acheter vos articles de sport sur notre site ALL 4 SPORT !</p>
+    <p>Venez acheter vos produits de sport sur notre site ALL 4 SPORT !</p>
     <p id="easter-egg">pas chere pas chere</p>
 </div>
+
+
+{% for produit in produits %}
+    <h2>{{ produit.nom }}</h2>
+    <p>{{ produit.description }}</p>
+    <p>{{ produit.prix_vente }} €</p>  
+    {# <a href="{{ path('produit_show', {'id': produit.id}) }}"> Voir le produit</a> #}
+{% endfor %}
+
 {% endblock %}
 
