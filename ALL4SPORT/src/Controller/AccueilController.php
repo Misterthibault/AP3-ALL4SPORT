@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Repository\ProduitRepository;
+use App\Entity\Produit;
+use App\Form\ProduitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -18,14 +20,14 @@ final class AccueilController extends AbstractController
         ]);
     }
 
-    // #[Route('/produit_show/{id}', name: 'produit_show')]         // route portant un nom, permet de l'appeler depuis n'importe où dans l'application plus facilement
-    // public function show(produit $produit): Response
-    // {
-    //     // $produit = $produitRepository->find($id);
-    //     return $this->render('produit/produit_show.html.twig', [
-    //         'produit' => $produit,
-    //     ]);
-    // }
+    #[Route('/produit_show/{id}', name: 'produit_show')]         // route portant un nom, permet de l'appeler depuis n'importe où dans l'application plus facilement
+    public function show(produit $produit): Response
+    {
+        // $produit = $produitRepository->find($id);
+        return $this->render('accueil/produit_show.html.twig', [
+            'produit' => $produit,
+        ]);
+    }
 
     #[Route('/register', name: 'app_register')]
     public function register(): Response
