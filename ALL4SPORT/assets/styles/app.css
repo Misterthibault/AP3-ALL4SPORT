@@ -14,6 +14,15 @@ body {
     font-family: "Segoe UI", sans-serif;
 }
 
+    .registration-link--home {
+        color: #34734a;
+        background: #fff;
+    }
+
+    .registration-link--home:hover {
+        color: #595656;
+    }
+
 .login-form {
     box-sizing: border-box;
     width: min(100%, 420px);
