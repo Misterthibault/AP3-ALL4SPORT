@@ -2,12 +2,13 @@
 
 namespace App\Controller;
 
-use App\Repository\ProduitRepository;
 use App\Entity\Produit;
 use App\Form\ProduitType;
+use App\Repository\ProduitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 final class AccueilController extends AbstractController
 {
@@ -59,6 +60,7 @@ final class AccueilController extends AbstractController
     }
 
     #[Route('/profil', name: 'app_profil')]
+    #[IsGranted('ROLE_USER')]
     public function profil(): Response
     {
         return $this->render('profil/index.html.twig', []);
