@@ -1,20 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfilController!{% endblock %}
+{% block title %}profil{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<main class="product-page product-list-page">
+    <a href="{{ path('app_accueil') }}">&larr; Retour accueil</a>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<h1>Votre profil</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/33645/Desktop/travail/BTS_SIO/2eme_annee/AP/AP3-ALL4SPORT/ALL4SPORT/src/Controller/ProfilController.php</code></li>
-        <li>Your template at <code>C:/Users/33645/Desktop/travail/BTS_SIO/2eme_annee/AP/AP3-ALL4SPORT/ALL4SPORT/templates/profil/index.html.twig</code></li>
-    </ul>
-</div>
+    <div class="product-table-wrap">
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>email</th>
+                    <th>nom</th>
+                    <th>prenom</th>
+                    <th>adresse</th>
+                    <th>telephone</th>
+                    <th>date_naissance</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if app.user %}
+                    <tr>
+                        <td>{{ app.user.email }}</td>
+                        <td>{{ app.user.nom }}</td>
+                        <td>{{ app.user.prenom }}</td>
+                        <td>{{ app.user.adresse }}</td>
+                        <td>{{ app.user.telephone }}</td>
+                        <td>{{ app.user.dateNaissance ? app.user.dateNaissance|date('Y-m-d') : '' }}</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
