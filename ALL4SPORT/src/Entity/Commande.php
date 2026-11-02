@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommandeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CommandeRepository::class)]
@@ -24,6 +26,21 @@ class Commande
 
     #[ORM\Column(length: 255)]
     private ?string $addresse_livraison = null;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: true, onDelete: 'SET NULL')]
+    private ?Client $client = null;
+
+    /**
+     * @var Collection<int, LigneCommande>
+     */
+    #[ORM\OneToMany(mappedBy: 'commande', targetEntity: LigneCommande::class, cascade: ['persist'], orphanRemoval: true)]
+    private Collection $lignes;
+
+    public function __construct()
+    {
+        $this->lignes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -74,6 +91,36 @@ class Commande
     public function setAddresseLivraison(string $addresse_livraison): static
     {
         $this->addresse_livraison = $addresse_livraison;
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): static
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, LigneCommande>
+     */
+    public function getLignes(): Collection
+    {
+        return $this->lignes;
+    }
+
+    public function addLigne(LigneCommande $ligne): static
+    {
+        if (!$this->lignes->contains($ligne)) {
+            $this->lignes->add($ligne);
+            $ligne->setCommande($this);
+        }
 
         return $this;
     }

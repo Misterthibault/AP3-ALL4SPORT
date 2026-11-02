@@ -3,31 +3,73 @@
 {% block title %}Panier ALL4SPORT{% endblock %}
 
 {% block body %}
-
 <main class="cart-page">
     <a class="cart-back" href="{{ path('app_accueil') }}">&larr; Continuer mes achats</a>
 
+    {% for message in app.flashes('success') %}
+        <p class="cart-message cart-message-success">{{ message }}</p>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        <p class="cart-message cart-message-error">{{ message }}</p>
+    {% endfor %}
+
     <div class="cart-heading">
         <h1>Mon panier</h1>
-        <span class="cart-count">(0 article)</span>
+        <span class="cart-count">({{ nombreArticles }} article{{ nombreArticles != 1 ? 's' : '' }})</span>
     </div>
 
-    <div class="cart-layout">
+    {% if lignes is empty %}
         <section class="cart-card" aria-labelledby="empty-cart-title">
             <div class="cart-icon" aria-hidden="true">🛒</div>
             <h2 id="empty-cart-title">Votre panier est vide</h2>
             <p>Découvrez notre sélection d’équipements et d’accessoires de sport pour trouver votre prochain essentiel.</p>
             <a class="shop-button" href="{{ path('app_accueil') }}">Découvrir nos produits</a>
         </section>
+    {% else %}
+        <div class="cart-layout">
+            <section class="cart-card cart-items" aria-label="Produits dans votre panier">
+                {% for ligne in lignes %}
+                    <article class="cart-item">
+                        {% if ligne.produit.imageFilename %}
+                            <img src="{{ asset('uploads/products/' ~ ligne.produit.imageFilename) }}" alt="{{ ligne.produit.nom }}">
+                        {% endif %}
+                        <div class="cart-item-info">
+                            <h2>{{ ligne.produit.nom }}</h2>
+                            <p>{{ ligne.produit.prixVente|number_format(2, ',', ' ') }} € l’unité</p>
+                        </div>
+                        <form class="cart-quantity-form" method="post" action="{{ path('app_panier_modifier', {id: ligne.produit.id}) }}">
+                            <input type="hidden" name="_token" value="{{ csrf_token('panier_modifier_' ~ ligne.produit.id) }}">
+                            <label for="quantity-{{ ligne.produit.id }}">Quantité</label>
+                            <input id="quantity-{{ ligne.produit.id }}" type="number" name="quantite" min="1" max="99" value="{{ ligne.quantite }}">
+                            <button type="submit">Mettre à jour</button>
+                        </form>
+                        <strong>{{ ligne.total|number_format(2, ',', ' ') }} €</strong>
+                        <form method="post" action="{{ path('app_panier_supprimer', {id: ligne.produit.id}) }}">
+                            <input type="hidden" name="_token" value="{{ csrf_token('panier_supprimer_' ~ ligne.produit.id) }}">
+                            <button class="cart-remove-button" type="submit">Retirer</button>
+                        </form>
+                    </article>
+                {% endfor %}
+            </section>
 
-        <aside class="summary-card" aria-labelledby="summary-title">
-            <h2 id="summary-title">Résumé de la commande</h2>
-            <div class="summary-line"><span>Sous-total</span><span>0,00 €</span></div>
-            <div class="summary-line"><span>Livraison</span><span>—</span></div>
-            <div class="summary-line summary-total"><span>Total</span><span>0,00 €</span></div>
-            <span class="checkout-button" aria-disabled="true">Passer commande</span>
-            <p class="delivery-note">Paiement sécurisé · Livraison en France</p>
-        </aside>
-    </div>
-</div>
+            <aside class="summary-card" aria-labelledby="summary-title">
+                <h2 id="summary-title">Résumé de la commande</h2>
+                <div class="summary-line"><span>Sous-total</span><span>{{ total|number_format(2, ',', ' ') }} €</span></div>
+                <div class="summary-line"><span>Livraison</span><span>Gratuite</span></div>
+                <div class="summary-line summary-total"><span>Total</span><span>{{ total|number_format(2, ',', ' ') }} €</span></div>
+                {% if adresseLivraison %}
+                    <p class="delivery-address">Livraison à : {{ adresseLivraison }}</p>
+                    <form method="post" action="{{ path('app_panier_commander') }}">
+                        <input type="hidden" name="_token" value="{{ csrf_token('panier_commander') }}">
+                        <button class="checkout-button" type="submit">Passer commande</button>
+                    </form>
+                {% else %}
+                    <p class="delivery-address">Ajoutez une adresse à votre profil pour passer commande.</p>
+                    <a class="shop-button" href="{{ path('app_profil') }}">Compléter mon profil</a>
+                {% endif %}
+                <p class="delivery-note">Le paiement sera à effectuer selon les modalités communiquées par le vendeur.</p>
+            </aside>
+        </div>
+    {% endif %}
+</main>
 {% endblock %}

@@ -42,14 +42,6 @@ final class AccueilController extends AbstractController
     //     return $this->render('/login.html.twig', []);
     // }
 
-    #[Route('/panier', name: 'app_panier')]
-    public function panier(): Response
-    {
-        return $this->render('panier/index.html.twig', [
-            'controller_name' => 'PanierController',
-        ]);
-    }
-
     #[Route('/accueil', name: 'app_produit')]         // route portant un nom, permet de l'appeler depuis n'importe où dans l'application plus facilement
     public function listProduit(ProduitRepository $produitRepository): Response
     {
