@@ -1,4 +1,10 @@
 {{ form_start(form) }}
+    {% if form.vars.data.imageFilename is defined and form.vars.data.imageFilename %}
+        <div>
+            <p>Image actuelle :</p>
+            <img src="{{ asset('uploads/products/' ~ form.vars.data.imageFilename) }}" alt="Image actuelle du produit" style="max-width: 200px; height: auto;">
+        </div>
+    {% endif %}
     {{ form_widget(form) }}
     <button class="btn">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}
