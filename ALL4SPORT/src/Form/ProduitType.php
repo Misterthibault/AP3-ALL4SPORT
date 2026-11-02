@@ -24,11 +24,13 @@ class ProduitType extends AbstractType
                 'class' => Magasin::class,
                 'choice_label' => 'id',
                 'multiple' => true,
+                'required' => false,
             ])
             ->add('entrepots', EntityType::class, [
                 'class' => Entrepot::class,
                 'choice_label' => 'id',
                 'multiple' => true,
+                'required' => false,
             ])
         ;
     }
