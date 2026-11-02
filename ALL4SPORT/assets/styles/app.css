@@ -16,21 +16,21 @@ body {
 
 .registration-link--login {
     color: #fff;
-    background: #2474b5;
+    background: #E56600;
 }
 
 .registration-link--login:hover {
-    background: #185b91;
+    background: #c0392b;
 }
 
 .registration-link--home {
-    color: #2474b5;
+    color: #c0392b;
     background: #fff;
 }
 
 .registration-link--home:hover {
-    color: #fff;
-    background: #2474b5;
+    color: #fff !important;
+    background: #c0392b;
 }
 
 .registration-link:focus-visible {
@@ -91,7 +91,7 @@ form textarea:focus {
 
 form input[type="checkbox"] {
     margin-right: 0.5rem;
-    accent-color: #2474b5;
+    accent-color: #E56600;
 }
 
 form button[type="submit"] {
@@ -99,7 +99,7 @@ form button[type="submit"] {
     margin-top: 0.5rem;
     padding: 0.85rem 1rem;
     color: #fff;
-    background: #2474b5;
+    background: #E56600;
     border: 0;
     border-radius: 7px;
     font: inherit;
@@ -109,7 +109,7 @@ form button[type="submit"] {
 }
 
 form button[type="submit"]:hover {
-    background: #185b91;
+    background: #c0392b;
     transform: translateY(-1px);
 }
 
@@ -121,9 +121,12 @@ form ul {
 }
 
 .site-header {
-padding: 1rem 2rem;
-background: #D15E00;
-box-shadow: 0 4px 18px rgba(15, 23, 42, 0.18);
+    display: flex;
+    padding: 1rem 2rem;
+    background: #2474b5;
+    box-shadow: 0 4px 18px rgba(15, 23, 42, 0.18);
+    align-items: center;
+    justify-content: space-between;
 }
 
 .header-actions {
@@ -163,11 +166,11 @@ outline-offset: 3px;
 .button-primary {
 background: #ffffff;
 border-color: #ffffff;
-color: #0b5fff;
+color: #E56600;
 }
 
 .button-secondary {
-background: #F86E00;
+background: #E56600;
 }
 
 .button-danger {
@@ -175,7 +178,7 @@ background: #dc2626;
 }
 
 .button-cart {
-background: #111827;
+background: #E56600;
 }
 
 .example-wrapper {
@@ -194,7 +197,7 @@ color: #172033;
 
 .example-wrapper h1 {
 margin: 0 0 1rem;
-color: #0b5fff;
+color: black;
 font-size: 2.5rem;
 line-height: 1.2;
 }
@@ -388,7 +391,7 @@ vertical-align: top;
 }
 
 .product-table thead th {
-background: #F86E00;
+background: #2474B5;
 color: #fff;
 font-size: 0.88rem;
 font-weight: 700;

@@ -20,29 +20,28 @@
     </head>
     <body>
 
-    <style>
-        
-
-    </style>
-
         <header class="site-header">
-            <img class="site-logo" src="{{ asset('images/Logo_ALL4SPORT.jpg') }}" alt="All4Sport">
-            <nav class="header-actions" aria-label="Navigation principale">
-                {% if app.user %}
-                    <a class="button button-danger" href="{{ path('app_logout') }}">Déconnecter</a>
-                {% else %}
-                    <a class="button button-primary" href="{{ path('app_register') }}">S'enregistrer</a>
-                    <a class="button button-secondary" href="{{ path('app_login') }}">Se connecter</a>
-                {% endif %}
-
-                {% if app.user %}
-                    <a class="button button-cart" href="{{ path('app_panier') }}">Panier</a>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <a class="button button-cart" href="{{ path('app_produit_index') }}">Gestion produits</a>
+            <div>
+                <img class="site-logo" src="{{ asset('images/Logo_ALL4SPORT.jpg') }}" alt="All4Sport">
+            </div>
+            <div>
+                <nav class="header-actions" aria-label="Navigation principale">
+                    {% if app.user %}
+                        <a class="button button-danger" href="{{ path('app_logout') }}">Déconnecter</a>
+                    {% else %}
+                        <a class="button button-primary" href="{{ path('app_register') }}">S'enregistrer</a>
+                        <a class="button button-secondary" href="{{ path('app_login') }}">Se connecter</a>
                     {% endif %}
-                    <a class="button button-cart" href="{{path('app_profil')}}">Profil</a>
-                {% endif %}
-            </nav>
+
+                    {% if app.user %}
+                        <a class="button button-cart" href="{{ path('app_panier') }}">Panier</a>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a class="button button-cart" href="{{ path('app_produit_index') }}">Gestion produits</a>
+                        {% endif %}
+                        <a class="button button-cart" href="{{path('app_profil')}}">Profil</a>
+                    {% endif %}
+                </nav>
+            </div>
         </header>
         {% block body %}{% endblock %}
     </body>
