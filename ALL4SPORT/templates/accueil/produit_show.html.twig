@@ -10,12 +10,14 @@
 
 <div class="example-wrapper">
 
-
+    {% if produit.imageFilename %}
+        <img class="product-image" src="{{ asset('uploads/products/' ~ produit.imageFilename) }}" alt="{{ produit.nom }}">
+    {% endif %}
     <h2>{{ produit.nom }}</h2>
     <p>{{ produit.description }}</p>
     <p>{{ produit.prixVente }} €</p>  
     <br>
-    <a href="{{ path('app_accueil') }}"> Retourner a l'ecran d'accueil<a/>
+    <a href="{{ path('app_accueil') }}"> Retourner à l'ecran d'accueil<a/>
     <hr>
 
 </div>
