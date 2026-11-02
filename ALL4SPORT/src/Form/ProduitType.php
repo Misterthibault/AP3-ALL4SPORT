@@ -25,6 +25,9 @@ class ProduitType extends AbstractType
             ->add('imageFile', FileType::class, [
                 'mapped' => false,
                 'required' => false,
+                'attr' => [
+                    'accept' => '.png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp',
+                ],
                 'constraints' => [
                     new Image(
                         maxSize: '5M',
