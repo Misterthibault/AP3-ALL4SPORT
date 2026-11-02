@@ -36,7 +36,9 @@
 
                 {% if app.user %}
                     <a class="button button-cart" href="{{ path('app_panier') }}">Panier</a>
-                    <a class="button button-cart" href="{{path('app_produit_index')}}">Gestion produits</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a class="button button-cart" href="{{ path('app_produit_index') }}">Gestion produits</a>
+                    {% endif %}
                     <a class="button button-cart" href="{{path('app_profil')}}">Profil</a>
                 {% endif %}
             </nav>
