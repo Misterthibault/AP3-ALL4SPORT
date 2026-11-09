@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Client;
 use App\Entity\Commande;
+use App\Entity\HistoriqueCommande;
 use App\Entity\LigneCommande;
 use App\Entity\Produit;
 use App\Repository\ProduitRepository;
@@ -159,9 +160,10 @@ final class PanierController extends AbstractController
             return $this->redirectToRoute('app_panier');
         }
 
+        $dateCommande = new \DateTime();
         $commande = (new Commande())
             ->setClient($client)
-            ->setDateCommande(new \DateTime())
+            ->setDateCommande($dateCommande)
             ->setLieuExpedition('ALL4SPORT')
             ->setAddresseLivraison($client->getAdresse());
 
@@ -171,6 +173,7 @@ final class PanierController extends AbstractController
             $price = $product->getPrixVente() ?? 0;
             $total += round($price * $quantity, 2);
 
+            $commande->addProduitId($product);
             $commande->addLigne((new LigneCommande())
                 ->setProduit($product)
                 ->setNomProduit($product->getNom() ?? '')
@@ -179,7 +182,13 @@ final class PanierController extends AbstractController
         }
 
         $commande->setCoutTotal(round($total, 2));
+        $historique = (new HistoriqueCommande())
+            ->setEtat('Commandée')
+            ->setDateCommande($dateCommande)
+            ->setCommandeTelClient($client->getTelephone() ?? '');
+
         $entityManager->persist($commande);
+        $entityManager->persist($historique);
         $entityManager->flush();
 
         $request->getSession()->remove(self::CART_KEY);

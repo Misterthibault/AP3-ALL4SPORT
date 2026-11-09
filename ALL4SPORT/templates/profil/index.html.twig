@@ -43,6 +43,7 @@
                 <tr>
                     <th>Numéro</th>
                     <th>Date</th>
+                    <th>Produits</th>
                     <th>Total</th>
                 </tr>
             </thead>
@@ -51,11 +52,16 @@
                     <tr>
                         <td>{{ commande.id }}</td>
                         <td>{{ commande.dateCommande|date('d/m/Y H:i') }}</td>
+                        <td>
+                            {% for ligne in commande.lignes %}
+                                {{ ligne.nomProduit }} ({{ ligne.quantite }}){% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        </td>
                         <td>{{ commande.coutTotal|number_format(2, ',', ' ') }} €</td>
                     </tr>
                 {% else %}
                     <tr>
-                        <td class="product-empty" colspan="3">Aucune commande pour le moment.</td>
+                        <td class="product-empty" colspan="4">Aucune commande pour le moment.</td>
                     </tr>
                 {% endfor %}
             </tbody>
