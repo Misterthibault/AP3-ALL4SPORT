@@ -187,9 +187,22 @@ final class PanierController extends AbstractController
             ->setDateCommande($dateCommande)
             ->setCommandeTelClient($client->getTelephone() ?? '');
 
-        $entityManager->persist($commande);
-        $entityManager->persist($historique);
-        $entityManager->flush();
+        $entityManager->wrapInTransaction(function (EntityManagerInterface $entityManager) use ($commande, $historique, $cart): void {
+            $entityManager->persist($commande);
+            $entityManager->persist($historique);
+            $entityManager->flush();
+
+            foreach ($cart as $productId => $quantity) {
+                $entityManager->getConnection()->executeStatement(
+                    'UPDATE commande_produit SET quantite = :quantite WHERE commande_id = :commandeId AND produit_id = :produitId',
+                    [
+                        'quantite' => $quantity,
+                        'commandeId' => $commande->getId(),
+                        'produitId' => $productId,
+                    ],
+                );
+            }
+        });
 
         $request->getSession()->remove(self::CART_KEY);
         $this->addFlash('success', sprintf('Votre commande n°%d a bien été enregistrée.', $commande->getId()));

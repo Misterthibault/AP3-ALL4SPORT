@@ -54,7 +54,7 @@
                         <td>{{ commande.dateCommande|date('d/m/Y H:i') }}</td>
                         <td>
                             {% for ligne in commande.lignes %}
-                                {{ ligne.nomProduit }} ({{ ligne.quantite }}){% if not loop.last %}, {% endif %}
+                                {{ ligne.nomProduit }} — Qté : {{ ligne.quantite }}{% if not loop.last %}, {% endif %}
                             {% endfor %}
                         </td>
                         <td>{{ commande.coutTotal|number_format(2, ',', ' ') }} €</td>
