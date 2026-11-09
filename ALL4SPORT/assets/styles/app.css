@@ -166,7 +166,7 @@ outline-offset: 3px;
 .button-primary {
 background: #ffffff;
 border-color: #ffffff;
-color: #E56600;
+color: #2474b5;
 }
 
 .button-secondary {
@@ -448,12 +448,21 @@ transform: translateY(-1px);
 background: #F86E00;
 }
 
+.container-produit{
+display: flex;
+flex-wrap: wrap;
+justify-content: space-around;
+}
+
 .product-card {
 padding: clamp(20px, 4vw, 36px);
 border: 1px solid #dce3d9;
 border-radius: 10px;
 background: #fff;
 box-shadow: 0 8px 24px rgb(28 49 34 / 7%);
+min-width:280px;
+max-width: 280px;
+margin: 10px;
 }
 
 .product-detail-table {
