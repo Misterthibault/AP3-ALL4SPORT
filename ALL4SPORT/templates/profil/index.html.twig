@@ -34,4 +34,31 @@
             </tbody>
         </table>
     </div>
+
+    <h2>Vos commandes</h2>
+
+    <div class="product-table-wrap">
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>Numéro</th>
+                    <th>Date</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for commande in commandes %}
+                    <tr>
+                        <td>{{ commande.id }}</td>
+                        <td>{{ commande.dateCommande|date('d/m/Y H:i') }}</td>
+                        <td>{{ commande.coutTotal|number_format(2, ',', ' ') }} €</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td class="product-empty" colspan="3">Aucune commande pour le moment.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
