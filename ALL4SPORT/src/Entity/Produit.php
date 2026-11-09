@@ -45,10 +45,17 @@ class Produit
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $imageFilename = null;
 
+    /**
+     * @var Collection<int, Commande>
+     */
+    #[ORM\ManyToMany(targetEntity: Commande::class, mappedBy: 'produit_id')]
+    private Collection $commandes;
+
     public function __construct()
     {
         $this->magasins = new ArrayCollection();
         $this->entrepots = new ArrayCollection();
+        $this->commandes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -178,6 +185,33 @@ class Produit
     public function setImageFilename(?string $imageFilename): static
     {
         $this->imageFilename = $imageFilename;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Commande>
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): static
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes->add($commande);
+            $commande->addProduitId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): static
+    {
+        if ($this->commandes->removeElement($commande)) {
+            $commande->removeProduitId($this);
+        }
 
         return $this;
     }

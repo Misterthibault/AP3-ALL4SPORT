@@ -37,9 +37,16 @@ class Commande
     #[ORM\OneToMany(mappedBy: 'commande', targetEntity: LigneCommande::class, cascade: ['persist'], orphanRemoval: true)]
     private Collection $lignes;
 
+    /**
+     * @var Collection<int, Produit>
+     */
+    #[ORM\ManyToMany(targetEntity: Produit::class, inversedBy: 'commandes')]
+    private Collection $produit_id;
+
     public function __construct()
     {
         $this->lignes = new ArrayCollection();
+        $this->produit_id = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -121,6 +128,30 @@ class Commande
             $this->lignes->add($ligne);
             $ligne->setCommande($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Produit>
+     */
+    public function getProduitId(): Collection
+    {
+        return $this->produit_id;
+    }
+
+    public function addProduitId(Produit $produitId): static
+    {
+        if (!$this->produit_id->contains($produitId)) {
+            $this->produit_id->add($produitId);
+        }
+
+        return $this;
+    }
+
+    public function removeProduitId(Produit $produitId): static
+    {
+        $this->produit_id->removeElement($produitId);
 
         return $this;
     }
