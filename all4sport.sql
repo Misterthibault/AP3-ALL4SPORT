@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3308
--- Généré le : lun. 05 oct. 2026 à 09:21
+-- Généré le : mer. 28 oct. 2026 à 19:33
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -44,7 +44,8 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`id`, `email`, `roles`, `password`, `nom`, `prenom`, `adresse`, `telephone`, `date_naissance`) VALUES
-(1, 'thibault.ponchelet59@gmail.com', '[]', '$2y$13$IsTCDQHnzKV//RVuiJ1bO.f2wP/iCuUl7aO54q8a6xOGBQBVCz45C', 'Ponchelet', 'Thibault', '18 Avenue de la victoire', '0667676769', '2007-03-08');
+(1, 'test@gmail.com', '[]', '$2y$13$DWsyJN6iXr3FNgZ8yNEJEO5eT9FiYltK3PwHwBDWE/hOGGptNfUO.', 'test', 'toto', 'rue du poulet', '0664656667', '2020-11-11'),
+(2, 'copainIA@gmail.com', '[]', '$2y$13$JoU2L440RlroZolarLR.je5U0kG4eEILPwwDV3KlTov5DS7NQPPI6', 'GPT', 'Claude', 'Avenue du web', '0669679911', '2024-06-14');
 
 -- --------------------------------------------------------
 
@@ -80,8 +81,9 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 ('DoctrineMigrations\\Version20260917100726', '2026-09-17 10:07:36', 53),
 ('DoctrineMigrations\\Version20260921065524', '2026-09-21 07:08:44', 25),
 ('DoctrineMigrations\\Version20260921072349', '2026-09-21 07:23:56', 52),
-('DoctrineMigrations\\Version20260928074858', '2026-09-28 09:15:58', 216),
-('DoctrineMigrations\\Version20261005072022', '2026-10-05 07:20:30', 30);
+('DoctrineMigrations\\Version20260928073935', '2026-09-28 07:49:08', 51),
+('DoctrineMigrations\\Version20260928074858', '2026-09-28 07:54:55', 261),
+('DoctrineMigrations\\Version20261005072022', '2026-10-12 06:34:11', 80);
 
 -- --------------------------------------------------------
 
@@ -285,7 +287,7 @@ ALTER TABLE `sport_pratiquer`
 -- AUTO_INCREMENT pour la table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `commande`

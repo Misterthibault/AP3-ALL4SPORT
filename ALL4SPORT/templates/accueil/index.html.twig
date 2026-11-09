@@ -19,21 +19,23 @@
 
 
 <section class="products-section" aria-label="Produits disponibles">
-    {% for produit in produits %}
-        <article class="product-card">
-            {% if produit.imageFilename %}
-                <img class="product-image" src="{{ asset('uploads/products/' ~ produit.imageFilename) }}" alt="{{ produit.nom }}">
-            {% endif %}
-            <h2>{{ produit.nom }}</h2>
-            <p class="product-description">{{ produit.description }}</p>
-            <p class="product-price">{{ produit.prixVente }} €</p>
-            <a class="product-link" href="{{ path('produit_show', {'id': produit.id}) }}">
-                Voir le produit en détail
-            </a>
-        </article>
-    {% else %}
-        <p class="empty-products">Aucun produit n'est disponible pour le moment.</p>
-    {% endfor %}
+    <div class="container-produit">
+        {% for produit in produits %}
+            <article class="product-card">
+                {% if produit.imageFilename %}
+                    <img class="product-image" src="{{ asset('uploads/products/' ~ produit.imageFilename) }}" alt="{{ produit.nom }}">
+                {% endif %}
+                <p style="font-weight: bold; font-size: 25px;color: #2474B5 !important;">{{ produit.nom }}</p>
+                <p class="product-description">{{ produit.description }}</p>
+                <p class="product-price">{{ produit.prixVente }} €</p>
+                <a class="product-link" href="{{ path('produit_show', {'id': produit.id}) }}">
+                    Voir le produit en détail
+                </a>
+            </article>
+        {% else %}
+            <p class="empty-products">Aucun produit n'est disponible pour le moment.</p>
+        {% endfor %}
+    </div>
 </section>
 
 <style>
